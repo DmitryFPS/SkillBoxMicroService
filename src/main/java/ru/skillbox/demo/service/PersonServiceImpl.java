@@ -28,7 +28,7 @@ public class PersonServiceImpl implements PersonService {
 
     public String createPerson(Person person) {
         Person savedPerson = personRepository.save(person);
-        return String.format("Пользователь %s добавлен в базу с id = %s ", savedPerson.getFirstName(), savedPerson.getId());
+        return String.format("Пользователь %s добавлен в базу с id = %s", savedPerson.getFirstName(), savedPerson.getId());
     }
 
     public String updatePerson(Person person) {
@@ -51,7 +51,6 @@ public class PersonServiceImpl implements PersonService {
             personRepository.createSubscription(ownerPersonId, subscriptionPersonId);
             return HttpStatus.OK.toString();
         } catch (Exception e) {
-            System.out.println(e.getCause().toString());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
     }
@@ -63,7 +62,6 @@ public class PersonServiceImpl implements PersonService {
             personRepository.unSubscription(ownerPersonId, unsubscribePersonId);
             return HttpStatus.OK.toString();
         } catch (Exception e) {
-            System.out.println(e.getCause().toString());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
     }
