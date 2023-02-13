@@ -25,6 +25,21 @@ public class Person {
     String lastName;
     boolean deleted = Boolean.FALSE;
 
+    public Person(String firstName, String lastName, boolean deleted, List<Person> persons) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.deleted = deleted;
+        this.persons = persons;
+    }
+
+    public Person(Long id, String firstName, String lastName, boolean deleted, List<Person> persons) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.deleted = deleted;
+        this.persons = persons;
+    }
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "person_subscription",
