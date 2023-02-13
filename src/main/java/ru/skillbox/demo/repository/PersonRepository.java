@@ -20,4 +20,14 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
     @Modifying
     @Query(value = "delete from person_subscription where owner_person_id = :ownerPersonId and subscription_person_id = :subscriptionPersonId", nativeQuery = true)
     void unSubscription(@Param("ownerPersonId") Long ownerPersonId, @Param("subscriptionPersonId") Long subscriptionPersonId);
+
+    @Query(value = "" +
+            "select exists(\n" +
+            "               select\n" +
+            "               from information_schema.tables\n" +
+            "               WHERE table_schema = 'public'\n" +
+            "                 AND table_name IN ('person', 'person_subscription')\n" +
+            "           )",
+            nativeQuery = true)
+    boolean checkIfTherePersonTable();
 }
